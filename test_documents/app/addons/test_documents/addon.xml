@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+	<id>test_documents</id>
+    <version>1.0.0</version>
+    <priority>1500</priority>
+		<position>50</position>
+    <has_icon>Y</has_icon>
+    <status>active</status>
+    <default_language>en</default_language>
+    <supplier>Nail-Khabibullin</supplier>
+    <supplier_link>https://www.nail-khabibullin.com/</supplier_link>
+    <authors>
+        <author>
+            <name>Nail-Khabibullin</name>
+        </author>
+    </authors>
+    <queries>
+        <item for="install">
+            CREATE TABLE ?:documents(
+                user_id mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
+                doc_id mediumint(8) UNSIGNED NOT NULL auto_increment,
+                timestamp int(11) unsigned NOT NULL DEFAULT '0',
+                name varchar(255) NOT NULL DEFAULT '',
+                document_description varchar(255) NOT NULL DEFAULT '',
+                category varchar(255) NOT NULL DEFAULT '',
+                type char(1) NOT NULL DEFAULT 'P',
+                permission_groups varchar(50) NOT NULL DEFAULT '0',
+                status char(1) NOT NULL DEFAULT 'D',
+                PRIMARY KEY (doc_id)
+            ) ENGINE=InnoDB DEFAULT CHARSET UTF8;
+        </item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:documents;</item>
+     </queries>
+</addon>

@@ -1,0 +1,17 @@
+msgid ""
+msgstr "Project-Id-Version: tygh"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: English\n"
+"Language: en_US"
+
+msgctxt "Addons::name::test_documents"
+msgid "Documents"
+msgstr "Documents"
+
+msgctxt "Addons::description::test_documents"
+msgid "Add-on adds the ability to place and categorize documents"
+msgstr "Add-on adds the ability to place and categorize documents"
+
+msgctxt "Languages::test_documents_menu_description"
+msgid "Manage product anserted content page tags."
+msgstr "Manage product and conteerwent page tags."
