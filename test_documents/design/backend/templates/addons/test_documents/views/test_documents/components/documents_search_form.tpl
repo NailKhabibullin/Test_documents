@@ -26,7 +26,7 @@
             </div>
         </div>
 
- <div class="sidebar-field">
+        <div class="sidebar-field">
             <label for="elm_type">{__("type")}</label>
             <div class="controls">
                 <select name="type" id="elm_type">
@@ -76,4 +76,3 @@
     </form>
     <form action="{""|fn_url}" method="post" name="report_form_{$report.report_id}">
 </div>
-

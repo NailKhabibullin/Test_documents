@@ -132,20 +132,34 @@
 
         {/component} {* detailed :: availability *}
 
-
-        
-
         <div class="control-group">
             <label class="control-label">{__("user")}</label>
             <div class="controls">
             {if !$document.user_id}
-                <p class="description">{"{$auth.user_id}"}</p>
+                <p class="description">{"{$auth.user_id|fn_get_user_name}"}</p>
             {else}
-                <p class="description">{"{$document.user_id}"}</p>
+                <p class="description">{"{$document.user_id|fn_get_user_name}"}</p>
             {/if}
                 <p class="muted description">{__("test_documents.user_added_document")}</p>
             </div>
         </div>
+
+
+    {if !fn_is_empty($user_data)}
+        <div class="profile-info__name">
+            {$user_full_name = "`$user_data.firstname` `$user_data.lastname`"|trim}
+            {if $user_full_name}
+                {if $user_data.user_id}
+                    <a href="{"profiles.update?user_id=`$user_data.user_id`"|fn_url}">{$user_full_name}</a>,
+                {else if $user_full_name}
+                    {$user_full_name},
+                {/if}
+            {/if}
+        </div>
+    {/if}
+    
+
+
 
     <!--content_general--></div>
     {hook name="documents:tabs_content"}

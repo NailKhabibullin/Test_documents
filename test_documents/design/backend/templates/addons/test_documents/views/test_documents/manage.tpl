@@ -56,14 +56,16 @@
                                     <td class="row-status">
                                         {capture name="tools_list"}
                                             <li>{btn type="list" text=__("edit") href="test_documents.update?doc_id=`$document.doc_id`"}</li>
-                                            <li>{btn
-                                                type="list"
-                                                text=__("delete")
-                                                class="cm-confirm"
-                                                href="test_documents.delete?doc_id=`$document.doc_id`{if $delete_redirect_url}&redirect_url={$delete_redirect_url}{/if}"
-                                                method="POST"
-                                            }
-                                            </li>
+                                            {if $auth.user_type == 'A'}
+                                                <li>{btn
+                                                    type="list"
+                                                    text=__("delete")
+                                                    class="cm-confirm"
+                                                    href="test_documents.delete?doc_id=`$document.doc_id`{if $delete_redirect_url}&redirect_url={$delete_redirect_url}{/if}"
+                                                    method="POST"
+                                                }
+                                                </li>
+                                            {/if}
                                         {/capture}
                                         {dropdown content=$smarty.capture.tools_list}
                                     </td>

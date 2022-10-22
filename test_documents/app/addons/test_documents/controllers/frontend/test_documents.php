@@ -23,7 +23,7 @@ defined('BOOTSTRAP') or die('Access denied');
 $return_url = fn_url('test_documents.documents');
 
 if ($mode === 'documents') {
-   
+
     $params = $_REQUEST ?? [];
     $params['items_per_page'] = $_REQUEST['items_per_page'] ?? Registry::get('settings.Appearance.admin_elements_per_page');
     $params['user_id'] = $auth['user_id'];
@@ -35,10 +35,20 @@ if ($mode === 'documents') {
         'search' => $params,
     ]);
 
-    // fn_print_die($documents);
-
 } elseif ($mode === 'document') {
 
-fn_print_die("$mode === 'document'documents.php");
+    $document = fn_get_document_data($_REQUEST['doc_id'], DESCR_SL);
+
+    Registry::set('navigation.tabs', array (
+        'general' => array (
+            'title' => __('general'),
+            'js' => true
+        ),
+    ));
+
+    Tygh::$app['view']->assign('document', $document);
+
+    $usergroups = fn_get_usergroups(['exclude_types' => ['A'],'status' => ['A'], 'type' => $usergroup_type], DESCR_SL);
+    Tygh::$app['view']->assign(['usergroups' => $usergroups]);
 
 }

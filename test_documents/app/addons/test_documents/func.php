@@ -21,7 +21,7 @@ function fn_get_documents($params = [], $items_per_page = 0) {
     $params = array_merge($default_params, $params);
 
     $condition = db_quote('WHERE 1 = 1');
-
+    $date_condition = '';
     $limit = '';
 
     if (!empty($params['user_id'])) {
@@ -55,18 +55,44 @@ function fn_get_documents($params = [], $items_per_page = 0) {
         $condition .= db_quote(' AND status = ?s', $params['status']);
     }
 
+    if (!empty($params['time_from']) || !empty($params['time_to'])) {
+        if (!empty($params['time_from'])) {
+            $params['time_from'] = fn_parse_date($params['time_from']);
+        }
+        if (!empty($params['time_to'])) {
+            $params['time_to'] = fn_parse_date($params['time_to']);
+        }
+        
+        if (!empty($params['time_from']) && empty($params['time_to'])) {
+            $date_condition .= db_quote(
+                ' AND timestamp >= ?i',
+                $params['time_from']
+            );
+        } elseif (!empty($params['time_to']) && empty($params['time_from'])) {
+            $date_condition .= db_quote(
+                ' AND timestamp <= ?i',
+                $params['time_to']
+            );
+        } else {
+            $date_condition .= db_quote(
+                ' AND timestamp BETWEEN ?i AND ?i',
+                $params['time_from'],
+                $params['time_to']
+            );
+        }
+    }
 
     if (!empty($params['items_per_page'])) {
         $params['total_items'] = db_get_field('SELECT COUNT(doc_id) FROM ?:documents ?p', $condition);
         $limit = db_paginate($params['page'], $params['items_per_page'], $params['total_items']);
     }
-
+    
     $sortings = [
         'timestamp' => '?:documents.timestamp',
         'user_id' => '?:documents.user_id',
         'doc_id' => '?:documents.doc_id',
         'name' => '?:documents.name',
-        'description' => '?:documents.document_description',
+        'document_description' => '?:documents.document_description',
         'category' => '?:documents.category',
         'type' => '?:documents.type',
         'permission_groups' => '?:documents.permission_groups',
@@ -77,10 +103,10 @@ function fn_get_documents($params = [], $items_per_page = 0) {
 
     // fn_print_die($sorting);
 
-    $documents = db_get_array('SELECT * FROM ?:documents ?p ?p', $condition, $sorting, $limit);
+    $documents = db_get_array('SELECT * FROM ?:documents ?p ?p ?p', $condition, $date_condition, $sorting, $limit);
 
-    // $qwery_to_database = db_quote('SELECT * FROM ?:documents ?p ?p', $condition, $sorting, $limit);
-    // fn_print_die($documents);
+    // $qwery_to_database = db_quote('SELECT * FROM ?:documents ?p ?p ?p', $condition, $date_condition, $sorting, $limit);
+    // fn_print_die($qwery_to_database);
 
     return [$documents, $params];
 }
@@ -130,5 +156,4 @@ function fn_update_document_data($document_data) {
     }
 
     return $result;
-    
 }

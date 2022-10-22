@@ -24,8 +24,11 @@
                 document_description varchar(255) NOT NULL DEFAULT '',
                 category varchar(255) NOT NULL DEFAULT '',
                 type char(1) NOT NULL DEFAULT 'P',
-                permission_groups varchar(50) NOT NULL DEFAULT '0',
+                permission_groups varchar(50) NULL DEFAULT '0',
                 status char(1) NOT NULL DEFAULT 'D',
+                time_from int(11) unsigned NOT NULL DEFAULT '0',
+                time_to int(11) unsigned NOT NULL DEFAULT '0',
+                file_links varchar(255) NOT NULL DEFAULT '',
                 PRIMARY KEY (doc_id)
             ) ENGINE=InnoDB DEFAULT CHARSET UTF8;
         </item>
