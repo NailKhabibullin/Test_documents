@@ -15,3 +15,47 @@ msgstr "Add-on adds the ability to place and categorize documents"
 msgctxt "Languages::test_documents_menu_description"
 msgid "Manage product anserted content page tags."
 msgstr "Manage product and conteerwent page tags."
+
+msgctxt "Languages::permission_groups"
+msgid "Permission groups"
+msgstr "Permission groups"
+
+msgctxt "Languages::internal"
+msgid "Internal"
+msgstr "Internal"
+
+msgctxt "Languages::test_documents.documents_title_"
+msgid "Documents"
+msgstr "Documents"
+
+msgctxt "Languages::test_documents.documents"
+msgid "Documents"
+msgstr "Documents"
+
+msgctxt "Languages::add_new_document"
+msgid "Add new document"
+msgstr "Add new document"
+
+msgctxt "Languages::test_documents.internal"
+msgid "Internal"
+msgstr "Internal"
+
+msgctxt "Languages::test_documents.public"
+msgid "Public"
+msgstr "Public"
+
+msgctxt "Languages::test_documents.upload_files"
+msgid "Upload files"
+msgstr "Upload files"
+
+msgctxt "Languages::test_documents.choose_files"
+msgid "Choose files"
+msgstr "Choose files"
+
+msgctxt "Languages::test_documents.user_added_document"
+msgid "Author"
+msgstr "Author"
+
+msgctxt "Languages::text.documents.author:  "
+msgid "Author: "
+msgstr "Author: "

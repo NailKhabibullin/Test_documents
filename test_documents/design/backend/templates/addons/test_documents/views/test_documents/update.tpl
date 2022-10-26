@@ -65,7 +65,7 @@
 
 
         <div class="control-group">
-            <label class="control-label" for="elm_document_upload_files_{$id}">{__("text.documents.upload_files")}</label>
+            <label class="control-label" for="elm_document_upload_files_{$id}">{__("test_documents.upload_files")}</label>
             <div class="controls">
                 <input name="uploaded_files[]" 
                         multiple="true" 
@@ -75,7 +75,7 @@
                         class="custom-file-input" 
                         id="inputGroupFile01" 
                         aria-describedby="inputGroupFileAddon01">
-                <label class="custom-file-label" for="inputGroupFile01">{__("text.documents.choose_files")}</label>
+                <label class="custom-file-label" for="inputGroupFile01">{__("test_documents.choose_files")}</label>
             </div>    
         </div>
 

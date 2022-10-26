@@ -3,7 +3,7 @@
         <div class="ty-feature">
             <div class="ty-feature__description ty-wysiwyg-content">
                 <bdi>
-                    <a>{__("text.documents.description")}</a>
+                    <a>{__("description")}</a>
                 </bdi>
                 {$document.document_description nofilter}
             </div>

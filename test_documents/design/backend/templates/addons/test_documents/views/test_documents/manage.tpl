@@ -56,7 +56,7 @@
                                     <td class="row-status">
                                         {capture name="tools_list"}
                                             <li>{btn type="list" text=__("edit") href="test_documents.update?doc_id=`$document.doc_id`"}</li>
-                                            {if $auth.user_type == 'A'}
+                                            {if $auth.user_type == 'A' || $auth.user_id == $document.user_id}
                                                 <li>{btn
                                                     type="list"
                                                     text=__("delete")

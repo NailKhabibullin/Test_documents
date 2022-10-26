@@ -1,7 +1,7 @@
 <!-- block-description:test_documents.documents_search_block -->
 
 <div class="sidebar-row">
-    <h6>{__("document_search")}</h6>
+    <h6>{__("search")}</h6>
     <form name="documents_search_form" action="{"commission_documents.manage"|fn_url}" method="get">
         {if $smarty.request.redirect_url}
             <input type="hidden" name="redirect_url" value="{$smarty.request.redirect_url}" />
