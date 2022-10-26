@@ -26,7 +26,14 @@ if ($mode === 'documents') {
 
     $params = $_REQUEST ?? [];
     $params['items_per_page'] = $_REQUEST['items_per_page'] ?? Registry::get('settings.Appearance.admin_elements_per_page');
-    $params['user_id'] = $auth['user_id'];
+    // $params['user_id'] = $auth['user_id'];
+    // fn_print_die($auth);
+    if($auth['user_type'] === 'C') {
+        $params['permission_groups'] = 'customer';
+    } else {
+        return [CONTROLLER_STATUS_NO_CONTENT];
+    }
+
 
     list($documents, $params) = fn_get_documents($params);
     
