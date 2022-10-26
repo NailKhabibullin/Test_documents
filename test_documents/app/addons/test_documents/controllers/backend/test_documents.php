@@ -39,8 +39,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         $document_data['doc_id'] = $_REQUEST['doc_id'];
         $document_data['user_id'] = $_REQUEST['user_id'];
-        $accessed_usergroups = $_REQUEST['field_data'];
-        $document_data['permission_groups'] = implode(', ', $accessed_usergroups['usergroup_ids']);
+
+        $accessed_usergroups = $_REQUEST['field_data']['usergroup_ids'];
+        foreach ($accessed_usergroups as &$usergroup_name) {
+            $usergroup_name = fn_get_usergroup_name($usergroup_name);
+        }
+
+        $accessed_usergroups = implode(', ', $accessed_usergroups);
+        $document_data['permission_groups'] = $accessed_usergroups;
 
         $files_name = $_FILES['uploaded_files']['name'];
         foreach ($files_name as &$link) {
@@ -49,8 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    
         $files_name = implode(',', $files_name);
         $document_data['file_links'] = $files_name;
-        
-        // fn_print_die($document_data);
 
         if (!empty($document_data)) {
             fn_update_document_data($document_data);
@@ -106,4 +110,12 @@ if ($mode === 'update' || $mode === 'add') {
         'documents'  => $documents,
         'search' => $params,
     ]);
+
+    $usergroups = fn_get_usergroups(array('exclude_types' => $exclude_types), DESCR_SL);
+
+    Tygh::$app['view']->assign(array(
+        'usergroups'         => $usergroups,
+        'usergroup_types'    => $usergroup_types,
+    ));
+    // fn_print_die($_REQUEST);
 }

@@ -19,6 +19,8 @@
     </div>
 </div>
 
+
+
 <div class="hidden" title="{__("exported_files")}" id="content_exported_files">
 {if $export_files}
     <div class="table-wrapper table-responsive-wrapper">

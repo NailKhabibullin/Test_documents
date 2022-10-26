@@ -56,8 +56,8 @@
             <label for="elm_permission_groups">{__("permission_groups")}</label>
             <select name="permission_groups" id="elm_permission_groups">
                 <option value=""></option>
-                {foreach from=$documents item="document"}
-                    <option value="{$document.permission_groups}"{if $search.permission_groups == $document.permission_groups}selected="selected"{/if}>{$document.permission_groups}</option>
+                {foreach from=$usergroups item="usergroup"}
+                    <option value="{$usergroup.usergroup}"{if $search.usergroup == $usergroup.usergroup}selected="selected"{/if}>{$usergroup.usergroup}</option>
                 {/foreach}
             </select>
         </div>

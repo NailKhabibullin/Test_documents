@@ -48,9 +48,9 @@ function fn_get_documents($params = [], $items_per_page = 0) {
     }
 
     if (!empty($params['permission_groups'])) {
-        $condition .= db_quote(' AND permission_groups = ?i', $params['permission_groups']);
+        $condition .= db_quote(' AND permission_groups LIKE ?l', '%' . $params['permission_groups'] . '%');
     }
-    
+
     if (!empty($params['status'])) {
         $condition .= db_quote(' AND status = ?s', $params['status']);
     }
@@ -125,6 +125,7 @@ function fn_get_document_data($doc_id, $lang_code = CART_LANGUAGE) {
         '?:documents.user_id',
         '?:documents.status',
         '?:documents.timestamp',
+        '?:documents.permission_groups'
     );
 
     // if (fn_allowed_for('ULTIMATE')) {
