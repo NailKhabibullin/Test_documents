@@ -32,6 +32,10 @@ msgctxt "Languages::test_documents.documents"
 msgid "Documents"
 msgstr "Documents"
 
+msgctxt "Languages::_test_documents"
+msgid "Documents"
+msgstr "Documents"
+
 msgctxt "Languages::add_new_document"
 msgid "Add new document"
 msgstr "Add new document"
@@ -56,6 +60,10 @@ msgctxt "Languages::test_documents.user_added_document"
 msgid "Author"
 msgstr "Author"
 
-msgctxt "Languages::text.documents.author:  "
+msgctxt "Languages::test_documents.author:  "
 msgid "Author: "
 msgstr "Author: "
+
+msgctxt "Languages::test_documents.push_for_download:  "
+msgid "Push for download"
+msgstr "Push for download"

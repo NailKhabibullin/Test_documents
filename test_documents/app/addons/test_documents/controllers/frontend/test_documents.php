@@ -34,7 +34,6 @@ if ($mode === 'documents') {
         return [CONTROLLER_STATUS_NO_CONTENT];
     }
 
-
     list($documents, $params) = fn_get_documents($params);
     
     Tygh::$app['view']->assign([
@@ -53,8 +52,13 @@ if ($mode === 'documents') {
         ),
     ));
 
-    Tygh::$app['view']->assign('document', $document);
+    if (!empty($document['file_links'])) {
+        $document['file_links'] = (!is_array($document['file_links'])) ? explode(',', $document['file_links']): $document['file_links'];
+        $document['file_name'] = (!is_array($document['file_links'])) ? explode(',', $document['file_links']): $document['file_links'];
+    }
 
-    $usergroups = fn_get_usergroups(['exclude_types' => ['A'],'status' => ['A'], 'type' => $usergroup_type], DESCR_SL);
-    Tygh::$app['view']->assign(['usergroups' => $usergroups]);
+    $download_links = $document['file_links'];
+
+    Tygh::$app['view']->assign('document', $document);
+    Tygh::$app['view']->assign('download_links', $download_links);
 }

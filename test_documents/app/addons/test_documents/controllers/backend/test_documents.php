@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $files_name = $_FILES['uploaded_files']['name'];
         foreach ($files_name as &$link) {
-            $link = $_SERVER['DOCUMENT_ROOT'] . '/uploads/' . $link;
+            $link = '/uploads/' . $link;
         }
    
         $files_name = implode(',', $files_name);

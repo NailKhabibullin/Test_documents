@@ -122,6 +122,7 @@ function fn_get_document_data($doc_id, $lang_code = CART_LANGUAGE) {
         '?:documents.user_id',
         '?:documents.status',
         '?:documents.timestamp',
+        '?:documents.file_links',
         '?:documents.permission_groups'
     );
 
@@ -152,6 +153,5 @@ function fn_update_document_data($document_data) {
     if (!empty($document_data)) {
         $result = db_replace_into('documents', $document_data);
     }
-
     return $result;
 }

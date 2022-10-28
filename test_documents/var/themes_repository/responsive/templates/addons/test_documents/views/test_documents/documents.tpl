@@ -26,7 +26,7 @@
         {foreach $documents as $document name="documents"}
             <tr class="cm-longtap-target">
                 <td><a href="{"test_documents.document?doc_id={$document.doc_id}"|fn_url}" title="{$document.timestamp|date_format:"`$settings.Appearance.date_format`"}">{$document.timestamp|date_format:"`$settings.Appearance.date_format`"}</a></td>
-                <td><a href="{"test_documents.document?doc_id={$document.doc_id}"|fn_url}" title="{$document.name}">{$document.name}</a></td>
+                <td><a href="{"test_documents.document?doc_id={$document.doc_id}"|fn_url}" title="{$document.document_description}">{$document.name}</a></td>
                 <td><a href="{"test_documents.document?doc_id={$document.doc_id}"|fn_url}" title="{$document.category}">{$document.category}</a></td>
             </tr>
         {/foreach}
