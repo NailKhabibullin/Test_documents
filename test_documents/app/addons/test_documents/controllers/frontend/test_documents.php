@@ -57,5 +57,4 @@ if ($mode === 'documents') {
 
     $usergroups = fn_get_usergroups(['exclude_types' => ['A'],'status' => ['A'], 'type' => $usergroup_type], DESCR_SL);
     Tygh::$app['view']->assign(['usergroups' => $usergroups]);
-
 }

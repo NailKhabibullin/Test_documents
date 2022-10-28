@@ -8,14 +8,7 @@
  * and use this program.                                                    *
  ***************************************************************************/
 
-use Tygh\Api;
-use Tygh\Enum\NotificationSeverity;
-use Tygh\Enum\ObjectStatuses;
-use Tygh\Enum\SiteArea;
-use Tygh\Enum\UserTypes;
-use Tygh\Enum\YesNo;
 use Tygh\Registry;
-use Tygh\Tools\Url;
 use Tygh\Tygh;
 
 defined('BOOTSTRAP') or die('Access denied');
@@ -48,6 +41,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $accessed_usergroups = implode(', ', $accessed_usergroups);
         $document_data['permission_groups'] = $accessed_usergroups;
 
+        $uploads_dir = $_SERVER['DOCUMENT_ROOT'] . '/uploads';
+        if (!file_exists($uploads_dir)) { 
+                mkdir($uploads_dir);
+            }
+        foreach ($_FILES['uploaded_files']['error'] as $key => $error) {
+            if ($error == UPLOAD_ERR_OK) {
+                $tmp_name = $_FILES['uploaded_files']['tmp_name'][$key];
+                $files_name = $_FILES['uploaded_files']['name'][$key];
+                move_uploaded_file($tmp_name, "$uploads_dir/$files_name");
+            }
+        }
+
         $files_name = $_FILES['uploaded_files']['name'];
         foreach ($files_name as &$link) {
             $link = $_SERVER['DOCUMENT_ROOT'] . '/uploads/' . $link;
@@ -73,11 +78,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     return [CONTROLLER_STATUS_OK, $return_url];
 }
 
-
-/***********************
-* REQUEST METHOD = GET *
-************************/
-
 if ($mode === 'update' || $mode === 'add') {
 
     $document = fn_get_document_data($_REQUEST['doc_id'], DESCR_SL);
@@ -93,8 +93,6 @@ if ($mode === 'update' || $mode === 'add') {
 
     $usergroups = fn_get_usergroups(['exclude_types' => ['A'],'status' => ['A'], 'type' => $usergroup_type], DESCR_SL);
     Tygh::$app['view']->assign(['usergroups' => $usergroups]);
-
-    // fn_print_die($document);
 
 } elseif ($mode === 'manage') {
 
@@ -117,5 +115,4 @@ if ($mode === 'update' || $mode === 'add') {
         'usergroups'         => $usergroups,
         'usergroup_types'    => $usergroup_types,
     ));
-    // fn_print_die($_REQUEST);
 }

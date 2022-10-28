@@ -15,6 +15,7 @@
     <div class="row-fluid">
         <bdi>
             <a>{__("text.documents.author:  ")}{$document.user_id|fn_get_user_name}</a>
+            <a href="/var/www/uploads/icon.png">Download_file</a>
         </bdi>
     </div>
 </div>

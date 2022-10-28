@@ -101,12 +101,9 @@ function fn_get_documents($params = [], $items_per_page = 0) {
     
     $sorting = db_sort($params, $sortings, 'timestamp', 'asc');
 
-    // fn_print_die($sorting);
-
     $documents = db_get_array('SELECT * FROM ?:documents ?p ?p ?p', $condition, $date_condition, $sorting, $limit);
 
     // $qwery_to_database = db_quote('SELECT * FROM ?:documents ?p ?p ?p', $condition, $date_condition, $sorting, $limit);
-    // fn_print_die($qwery_to_database);
 
     return [$documents, $params];
 }
