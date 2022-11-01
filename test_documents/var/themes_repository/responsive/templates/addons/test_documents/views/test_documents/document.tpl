@@ -39,4 +39,3 @@
 {/if}
 
 {capture name="mainbox_title"}{$document.name}{/capture}
-

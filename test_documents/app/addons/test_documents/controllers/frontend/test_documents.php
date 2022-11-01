@@ -8,14 +8,7 @@
  * and use this program.                                                    *
  ***************************************************************************/
 
-use Tygh\Api;
-use Tygh\Enum\NotificationSeverity;
-use Tygh\Enum\ObjectStatuses;
-use Tygh\Enum\SiteArea;
-use Tygh\Enum\UserTypes;
-use Tygh\Enum\YesNo;
 use Tygh\Registry;
-use Tygh\Tools\Url;
 use Tygh\Tygh;
 
 defined('BOOTSTRAP') or die('Access denied');
@@ -26,8 +19,7 @@ if ($mode === 'documents') {
 
     $params = $_REQUEST ?? [];
     $params['items_per_page'] = $_REQUEST['items_per_page'] ?? Registry::get('settings.Appearance.admin_elements_per_page');
-    // $params['user_id'] = $auth['user_id'];
-    // fn_print_die($auth);
+
     if($auth['user_type'] === 'C') {
         $params['permission_groups'] = 'customer';
     } else {

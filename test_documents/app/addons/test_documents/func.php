@@ -1,12 +1,5 @@
 <?php
 
-use Tygh\Enum\SiteArea;
-use Tygh\Enum\UserTypes;
-use Tygh\Enum\YesNo;
-use Tygh\Registry;
-use Tygh\Tygh;
-use Tygh\Addons\SdInvitedVendorsAndCustomers\InvitationMetaImage;
-
 if (!defined('BOOTSTRAP')) { die('Access denied'); }
 
 function fn_get_documents($params = [], $items_per_page = 0) {
@@ -103,8 +96,6 @@ function fn_get_documents($params = [], $items_per_page = 0) {
 
     $documents = db_get_array('SELECT * FROM ?:documents ?p ?p ?p', $condition, $date_condition, $sorting, $limit);
 
-    // $qwery_to_database = db_quote('SELECT * FROM ?:documents ?p ?p ?p', $condition, $date_condition, $sorting, $limit);
-
     return [$documents, $params];
 }
 
@@ -125,12 +116,6 @@ function fn_get_document_data($doc_id, $lang_code = CART_LANGUAGE) {
         '?:documents.file_links',
         '?:documents.permission_groups'
     );
-
-    // if (fn_allowed_for('ULTIMATE')) {
-    //     $fields[] = '?:banners.company_id as company_id';
-    // }
-
-    // $joins[] = db_quote("LEFT JOIN ?:banner_descriptions ON ?:banner_descriptions.banner_id = ?:banners.banner_id AND ?:banner_descriptions.lang_code = ?s", $lang_code);
 
     $condition = db_quote("WHERE ?:documents.doc_id = ?i", $doc_id);
     $condition .= (AREA == 'A') ? '' : " AND ?:documents.status IN ('A', 'H') ";
